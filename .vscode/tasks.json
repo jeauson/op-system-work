@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "MSVC: cl 编译当前文件",
+            "command": "${workspaceFolder}\\.vscode\\clbuild.cmd",
+            "args": [
+                "${file}",
+                "/Fe:${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "/Fo:C:\\Temp\\${fileBasenameNoExtension}.obj"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "用 Visual Studio 的 cl.exe 编译，规避 MinGW 对中文临时路径的问题"
+        },
+        {
+            "type": "shell",
+            "label": "MinGW: g++ 编译当前文件",
+            "command": "${workspaceFolder}\\.vscode\\gxx.cmd",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-std=c++17",
+                "-Wall",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "备用方案：MinGW g++，包装脚本把临时目录设为 C:\\Temp"
+        }
+    ]
+}
