@@ -2,16 +2,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "MSVC 调试当前文件",
-            "type": "cppvsdbg",
+            "name": "调试当前文件 (gdb)",
+            "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "console": "externalTerminal",
-            "preLaunchTask": "MSVC: cl 编译当前文件"
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\Users\\嵇明国\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\\mingw64\\bin\\gdb.exe",
+            "preLaunchTask": "编译当前文件 (g++)",
+            "setupCommands": [
+                {
+                    "description": "启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
         }
     ]
 }
